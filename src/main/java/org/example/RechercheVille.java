@@ -16,13 +16,29 @@ public class RechercheVille {
     }
 
     public List<String> rechercher(String ville) {
+        if (ville.equals("*"))
+            return listVilles;
+
         if (ville.length() < 2) {
             throw new NotFoundException();
         }
         List<String> listResultat = new ArrayList<>();
-        for(String villeResult : listVilles) { //j'ajoute chaque villeResult dans la listResult
-            if(villeResult.startsWith(ville)) {
-                listResultat.add(villeResult) ;
+        for (String villeResult : listVilles) { //j'ajoute chaque villeResult dans la listResult
+            if (villeResult.startsWith(ville)) {
+                listResultat.add(villeResult);
+            }
+        }
+
+        for (String villeResult : listVilles) {
+            if (villeResult.equalsIgnoreCase(ville)) {
+                listResultat.add(villeResult);
+            }
+        }
+
+        for (String villeResult : listVilles) {
+            if (villeResult.contains(ville)) {
+                listResultat.add(villeResult);
+
             }
         }
 
